@@ -1,0 +1,1 @@
+We are going to explain Shell, init files, variables and expansions
