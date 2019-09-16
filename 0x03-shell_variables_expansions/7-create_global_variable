@@ -1,2 +1,3 @@
 #!/bin/bash
-export betty="HOLBERTON"
+export HOLBERTON="Betty"
+s
