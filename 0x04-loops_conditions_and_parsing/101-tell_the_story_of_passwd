@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# displays the content of the file /etc/passwd
+FILE="/etc/passwd"
+while IFS=":" read -r line
+do
+    USERNAME="$(echo "$line" | cut -d':' -f1)"
+    GRP_ID="$(echo "$line" | cut -d':' -f4)"
+    DIRECTORY="$(echo "$line" | cut -d':' -f6)"
+    SHELL="$(echo "$line" | cut -d':' -f7)"
+    USR_ID="$(echo "$line" | cut -d':' -f3)"
+    PASSWORD="$(echo "$line" | cut -d':' -f2)"
+    INFO="$(echo "$line" | cut -d':' -f5)"
+
+    echo "The user $USERNAME is part of the $GRP_ID gang, lives in $DIRECTORY and rides $SHELL. $USR_ID's place is protected by the passcode $PASSWORD, more info about the user here: $INFO"
+done < "$FILE"
