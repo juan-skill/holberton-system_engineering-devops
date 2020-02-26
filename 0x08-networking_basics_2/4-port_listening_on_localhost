@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Start by using nc to listen on a specific port
+nc -l localhost 98
