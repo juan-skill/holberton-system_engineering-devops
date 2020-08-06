@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Configure Nginx server so that /redirect_me is redirecting another page
+
+sudo sed -i '48i\rewrite ^/redirect_me https://www.youtube.com/watch?v=rvdJDijO2Ro permanent;' /etc/nginx/sites-available/default
+service nginx restart
