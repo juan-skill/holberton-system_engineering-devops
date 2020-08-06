@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Configure your Nginx server to have a custom 404
+
+apt-get update
+apt-get install nginx -y
+echo "Holberton School" | tee /var/www/html/index.nginx-debian.html
+service nginx restart
+
+sudo sed -i '48i\rewrite ^/redirect_me https://www.youtube.com/watch?v=rvdJDijO2Ro permanent;' /etc/nginx/sites-available/default
+service nginx restart
+
+echo "Ceci n'est pas une page" | tee /usr/share/nginx/html/404error.html
+sed -i '61i\error_page 404 /404error.html; location = /404error.html{root /usr/share/nginx/html; internal;}' /etc/nginx/sites-available/default
+service nginx restart
