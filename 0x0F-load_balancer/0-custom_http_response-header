@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
 # The name of the custom HTTP header must be X-Served-By
+# The value of the custom HTTP header must be the hostname of the server Nginx is running on
+apt-get -y update
+apt-get -y install nginx
+echo "Holberton School" | tee /var/www/html/index.nginx-debian.html
+service nginx restart
+sudo sed -i '48i\rewrite ^/redirect_me https://www.youtube.com/watch?v=doF7owZ0blk permanent;' /etc/nginx/sites-available/default
+service nginx restart
+echo "Ceci n'est pas une page" | tee /usr/share/nginx/html/404e.html
+sed -i '61i\error_page 404 /404e.html; location = /404e.html {root /usr/share/nginx/html; internal;}' /etc/nginx/sites-available/default
 sudo sed -i "35i\add_header X-Served-By \"$HOSTNAME\";" /etc/nginx/sites-available/default
 service nginx restart
