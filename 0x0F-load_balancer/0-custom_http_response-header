@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# The name of the custom HTTP header must be X-Served-By
+sudo sed -i "35i\add_header X-Served-By \"$HOSTNAME\";" /etc/nginx/sites-available/default
+service nginx restart
