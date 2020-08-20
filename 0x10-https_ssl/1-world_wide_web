@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# display information about subdomains
+# dig +nocmd A web-02.hbtn-0.tech +noall +answer | awk '{ print "The subdomain  is a " $4 " record and points to " $5}'
+
+resolv(){
+    dig +nocmd A "$1.$2" +noall +answer | awk -v subdo="$1" '{ print "The subdomain " subdo  " is a " $4 " record and points to " $5}'
+    # echo " $1 resolved  $2 .."
+}
+
+check(){
+    if [[ "$#" == 1 ]]; then
+
+	for subdomain in www lb-01 web-01 web-02; do
+	    resolv "$subdomain" "$1"
+
+	done
+	exit $?
+    else
+	resolv "$2" "$1"
+	exit $?
+    fi
+}
+
+check "$@"
